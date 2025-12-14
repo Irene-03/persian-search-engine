@@ -18,8 +18,8 @@ A production-ready, multi-threaded web crawler built for academic research purpo
 
 ```bash
 # Clone and setup
-git clone <repository-url>
-cd EX1-crawler
+git clone https://github.com/irene-03/persian-search-engine.git
+cd persian-search-engine
 
 # Create virtual environment and install dependencies
 python -m venv .venv
