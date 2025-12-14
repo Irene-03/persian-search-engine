@@ -1,0 +1,103 @@
+
+
+user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.1 Safari/537.36"
+allowed_domain:
+  - "bama.ir"
+
+seeds:
+  - "https://bama.ir/"
+
+# هدف: 11هزار صفحه HTML یکتا
+max_pages: 11000
+max_depth: 10
+
+# HTTP ساده (بدون رندر)
+request_timeout_sec: 12
+max_retries: 2
+min_delay_per_host_sec: 0.6
+robots_cache_ttl_sec: 1800
+
+# همزمانی
+workers: 16
+max_concurrency_per_host: 7  
+
+# رفتار و ذخیره‌سازی
+store_html: true
+respect_robots: true
+follow_subdomains: true
+save_csv_batch_size: 200
+proxy: null
+captcha_quarantine_sec: 900
+
+# معرفی خزنده
+crawler_name: "irene_study"
+contact_email: "z.arefeh.z@gmail.com"
+
+# رندر را برای باما خاموش نگه دار
+enable_render: false
+render_wait_until: "domcontentloaded"
+render_timeout_sec: 6
+render_retry: 0
+
+# مسیرهای مجاز/غیرمجاز برای کنترل انفجار لینک‌ها
+allowed_paths_regex:
+  - "^/$"
+  - "^/car(\\?.*)?$"
+  - "^/car/.*"
+  - "^/news(\\?.*)?$"
+  - "^/news/.*"
+  - "^/price(\\?.*)?$"
+  - "^/car-reviews(\\?.*)?$"
+  - "^/motorcycle(\\?.*)?$"
+  - "^/truck(\\?.*)?$"
+
+disallowed_paths_regex:
+  - "^/account/.*"
+  - "^/alert/.*"
+  - "^/dealer/.*"
+  - "^/calculator(\\?.*)?$"
+  - "^/guided-search(\\?.*)?$"
+  - "^/traffic-violation.*"
+  - "^/price-alert.*"
+  - "^/join-us$"
+  - "^/shops$"
+  - "^/sitemap.*"
+
+# نرمال‌سازی کوئری‌ها (حذف پارامترهای بی‌اثر/تبلیغاتی)
+strip_query_params:
+  - "^utm_.*"
+  - "^gclid$"
+  - "^fbclid$"
+  - "^ref$"
+  - "^from$"
+  - "^_hs.*"
+
+# کنترل تطبیقی سرعت/همزمانی
+adaptive_enabled: true
+adaptive_min_inflight: 4
+adaptive_max_inflight: 24
+adaptive_step: 2
+adaptive_latency_low_ms: 500
+adaptive_latency_high_ms: 2000
+adaptive_error_high: 0.15
+
+# چک‌پوینت و از سرگیری
+checkpoint_enabled: true
+checkpoint_interval_sec: 10
+pause_at_checkpoint: false
+
+
+
+# رندرِ انتخابی: مسیرهای بی‌ارزش را کاملاً حذف کن تا صف منفجر نشود
+# (این کلید با منطق blocklist در fetcher استفاده می‌شود)
+render_blocklist_paths:
+  - "^/landings/.*"
+  - "^/promotions/.*"
+  - "^/explore/.*"
+  - "^/account/.*"
+  - "^/wallet.*"
+  - "^/developers.*"
+  - "^/apps.*"
+  - "^/join.*"
+  - "^/careers.*"
+  - "^/about/(terms-of-use|contact-us).*"   # صفحات ثابتِ سنگین، عموما بی‌فایده برای بدنه داده

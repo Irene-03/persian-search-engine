@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+*.sqlite
+*.db
+*.log
+*.csv
+*.jsonl
+*.tmp
+.env
+build/
+dist/
+.git/
+data/
+src/data/
